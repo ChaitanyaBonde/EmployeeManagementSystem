@@ -15,17 +15,12 @@ public class EmployeeController {
     @GetMapping("/GetAllTask/{employeeId}")
     public ResponseEntity<Object> getAllTask(@RequestParam Integer page,
                                              @RequestParam Integer limit,
-                                             @PathVariable Integer employeeId){
+                                             @PathVariable String employeeId){
         return employeeService.findAllTasks(page,limit, employeeId);
     }
 
     @PutMapping("/completeTask/{taskId}")
-    public ResponseEntity<Object> editTask(@PathVariable Integer taskId){
-        return employeeService.editTask(taskId);
-    }
-
-    @PutMapping("/editEmployeeDetails/{employeeId}")
-    public ResponseEntity<Object> editEmployeeDetails(@PathVariable Integer employeeId){
-        return employeeService.editEmployeedetails(employeeId);
+    public ResponseEntity<Object> EditTask(@PathVariable Integer taskId,@RequestParam String Status){
+        return employeeService.EditTask(taskId,Status);
     }
 }

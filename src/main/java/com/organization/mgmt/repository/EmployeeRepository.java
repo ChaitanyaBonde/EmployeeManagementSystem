@@ -11,7 +11,5 @@ import java.util.Optional;
 public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     Optional<Employee> findByEmployeeId(String employeeid);
 
-//    List<Employee> findAll(Pageable pageable);
-
 
 }

@@ -2,6 +2,7 @@ package com.organization.mgmt.controller;
 
 import com.organization.mgmt.entity.Admin;
 import com.organization.mgmt.entity.Employee;
+import com.organization.mgmt.entity.Task;
 import com.organization.mgmt.service.AdminService;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
@@ -35,5 +36,10 @@ public class AdminController {
     @GetMapping("/getEmployee/{employeeId}")
     public ResponseEntity<Object> getEmployee(@PathVariable String employeeId){
         return adminService.getEmployeedetails(employeeId);
+    }
+
+    @PostMapping("/assignTask")
+    public ResponseEntity<Object> assginTask(@RequestBody Task task){
+        return adminService.assginTask(task);
     }
 }
