@@ -22,6 +22,11 @@ public class AdminController {
         return adminService.registerAdmiin(admin);
     }
 
+    @GetMapping("/login")
+    public ResponseEntity<Object> adminLogin(@RequestBody Admin admin){
+        return adminService.login(admin);
+    }
+
     @PostMapping("/add/employee")
     public ResponseEntity<Object> addEmployee(@RequestBody Employee employee){
         return adminService.addEmployee(employee);

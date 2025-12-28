@@ -1,5 +1,7 @@
 package com.organization.mgmt.service;
 
+import com.organization.mgmt.component.JwtUtility;
+import com.organization.mgmt.entity.Employee;
 import com.organization.mgmt.entity.Task;
 import com.organization.mgmt.repository.EmployeeRepository;
 import com.organization.mgmt.repository.TaskRepository;
@@ -11,6 +13,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +27,26 @@ public class EmployeeService {
 
     @Autowired
     private TaskRepository taskRepository;
+
+    @Autowired
+    private PasswordEncoder encoder;
+
+    @Autowired
+    private EmployeeUserDetailsService employeeUserDetailsService;
+
+    @Autowired
+    private JwtUtility jwtUtility;
+
+    public ResponseEntity<Object> login(Employee employee) {
+        UserDetails userDetails = employeeUserDetailsService.loadUserByUsername(employee.getUsername());
+        if (!encoder.matches(employee.getPassword(),userDetails.getPassword())){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Creditetials");
+        }
+        return ResponseEntity.ok(
+                "{\n" +
+                "  \"JWt Auth Token\": "+jwtUtility.genrateToken(userDetails)+"\n" +
+                " }");
+    }
 
     public ResponseEntity<Object> findAllTasks(Integer page, Integer limit, String employeeId){
 
@@ -46,8 +70,5 @@ public class EmployeeService {
         }
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No data found");
     }
-
-
-
 
 }
