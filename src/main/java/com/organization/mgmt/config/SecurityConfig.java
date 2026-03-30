@@ -34,6 +34,8 @@ public class SecurityConfig {
                         .requestMatchers("/admin/login","/admin/register", "/employee/login").permitAll()
                         .requestMatchers("/admin/**").hasRole("Admin")
                         .requestMatchers("/employee/**").hasAnyRole("Employee","Admin")
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(AbstractHttpConfigurer::disable)

@@ -4,6 +4,7 @@ import com.organization.mgmt.entity.Admin;
 import com.organization.mgmt.entity.Employee;
 import com.organization.mgmt.entity.Task;
 import com.organization.mgmt.service.AdminService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin")
+@Tag(name = "Admin Apis", description = "register employee and add task")
 public class AdminController {
 
     @Autowired

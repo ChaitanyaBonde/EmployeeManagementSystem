@@ -2,6 +2,7 @@ package com.organization.mgmt.controller;
 
 import com.organization.mgmt.entity.Employee;
 import com.organization.mgmt.service.EmployeeService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.AfterDomainEventPublication;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/employee")
+@Tag(name = "Employee Apis", description = "Edit Daily task")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
