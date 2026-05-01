@@ -11,7 +11,7 @@ import java.util.List;
 @Configuration
 public class SwaggerConffig {
     @Bean
-    public OpenAPI muCustCOnfig() {
+    public OpenAPI openApiConfig() {
         return new OpenAPI().info(
                         new Info()
                                 .title("Organization management Api")
